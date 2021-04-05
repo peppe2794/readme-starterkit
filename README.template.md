@@ -65,7 +65,7 @@ console.log("Questo è un esempio di blocco di codice")
 ```
 
 # Guida all'uso
-Per poter utilizzare il template, una volta effettuato il Fork, bisogna inserire i parametri necessari al completamento di esso.
+Per poter utilizzare il template, una volta effettuato il Fork, bisogna inserire i parametri necessari al completamento di esso.  
 In particoalre i file su cui bisogna agire sono:
   - Provisioning
       - resource.tf
