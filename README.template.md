@@ -37,12 +37,17 @@ SecDevOps Flow Template è uno strumento capace di eseguire un flusso di continu
   
   
 # Set-up Plugin in Jenkins
+Dalla Dashboard di Jenkins recarsi nella sezione Global Tool Configuartion per configurare i plug-in
 
 ###  SonarQube Scanner for Jenkins
 ![My image](https://i.ibb.co/rccGv0G/sonarqube-plugin.png)
 
 ###  Ansible Plugin
 ![My image](https://i.ibb.co/k110fDL/ansible-plugin.png)
+
+
+###  Terraform Plugin
+![My image](https://i.ibb.co/S3zQqY2/terraform-plugin.png)
 
 ```js
 console.log("Questo è un esempio di blocco di codice")
