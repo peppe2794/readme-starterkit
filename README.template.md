@@ -6,7 +6,7 @@ SecDevOps Flow Template è uno strumento capace di eseguire un flusso di continu
 
 ## Immagini e GIF
 
-![My image](https://ibb.co/cY9N0z2)
+![My image](https://i.ibb.co/J3TzVXr/Flusso-Strumenti.png)
 
 # Indice
 
