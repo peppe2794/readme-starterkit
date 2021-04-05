@@ -13,7 +13,7 @@ Il risultato è costituito da una serie di report riguardanti la valutazione del
 
 - [Requisiti](#Requisiti)
 - [Set-up Plugin in Jenkins](#set-up-plugin-in-jenkins)
-- [Guida all'uso](#Guida_all'uso)
+- [Guida all'uso](#guida-alluso)
 - [Licenza](#licenza)
 
 # Requisiti
