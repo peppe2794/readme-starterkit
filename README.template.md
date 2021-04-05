@@ -37,7 +37,7 @@ SecDevOps Flow Template è uno strumento capace di eseguire un flusso di continu
   
   
 # Set-up Plugin in Jenkins
-Dalla Dashboard di Jenkins recarsi nella sezione Global Tool Configuartion per configurare i plug-in
+Dalla Dashboard di Jenkins recarsi in manage Jenkins -> Global Tool Configuration per configurare i plug-in
 
 ###  SonarQube Scanner for Jenkins
 ![My image](https://i.ibb.co/rccGv0G/sonarqube-plugin.png)
@@ -48,6 +48,16 @@ Dalla Dashboard di Jenkins recarsi nella sezione Global Tool Configuartion per c
 
 ###  Terraform Plugin
 ![My image](https://i.ibb.co/S3zQqY2/terraform-plugin.png)
+
+### Integrazione SonarQube
+Per Integrare SonarQube vi è bisogno di inserire il Server authentication token in Jenkins:
+  1. Eseguire il Login nel proprio SonarQube Server e dalla barra utente Recarsi in My Account –> Security –> Generate Token
+  2. Eseguire il login nel proprio Jenkins Server e recarsi in Manage Jenkins –> Configure Systems –> SonarQube Serverse:
+      - Name : SonarQube
+      - Server URL : indirizzo IP del sonar Server
+      - Server authentication token creando delle nuove credenziali di tipo 'SecretText'
+![My image](https://i.ibb.co/tLFKL41/sonarqube-token.png)
+
 
 ```js
 console.log("Questo è un esempio di blocco di codice")
