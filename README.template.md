@@ -72,10 +72,11 @@ In particoalre i file su cui bisogna agire sono:
   - version.txt
   - Deploy, per caricare i manisfest di deployment
 
-#### resource.tf
+### resource.tf
 E' utilizzato da Terraform per istanziare macchine virtuali in Proxmox, sulle quali verrà eseguito un cluster Kuberntes.  
 I parametri da fornire sono:
 
+#### Indirizzi IP che si vogliono assegnare alle macchine virtuali
 ```groovy
 variable "ip_list"{
   type  =  list
@@ -87,6 +88,64 @@ _Esempio_
 variable "ip_list"{
   type  =  list
   default  =  ["192.168.6.114","192.168.6.115"]
+}
+```
+#### Credenziali che si volgiono assegnare alle macchine virtuali
+```groovy
+variable "credentials_ciuser"{
+  type  =  list
+  default  =  ["{USER1}","{USER2}"]
+}
+variable "credentials_cipassword"{
+  type  =  list
+  default  =  ["{PASSWORD1}","{PASSWORD2}"]
+}
+```
+_Esempio_
+```groovy
+variable "credentials_ciuser"{
+  type  =  list
+  default  =  ["master","worker"]
+}
+variable "credentials_cipassword"{
+  type  =  list
+  default  =  ["master","worker"]
+}
+```
+#### Numero di macchine virtuali da istanziare e il nome che si vuole scegliere per esse
+```groovy
+  count  =  {VM_COUNT}
+  name   =  "{VM_NAME}${count.index}"
+```
+_Esempio_
+```groovy
+  count  =  2 
+  name  =  "kub${count.index}"
+```
+#### Template da clonare precedentemente creato in Proxmox
+```groovy
+clone  =  "{VM_TEMPLATE_NAME}"
+```
+_Esempio_
+```groovy
+clone  =  "Deploy"
+```
+#### Caratteristiche della macchina virtuale e pool di risorse assegante all'utente
+```groovy
+memory  =  {MEMORY_IN_MB}
+cores  =  "{CORE}"
+pool  =  "{POOL}"
+disk {
+  size  =  "{SIZE_IN_MB}"
+}
+```
+_Esempio_
+```groovy
+memory  =  8192
+cores  =  "4"
+pool  =  "Tesi_Zagaria"
+disk {
+  size  =  "10240M"
 }
 ```
 
