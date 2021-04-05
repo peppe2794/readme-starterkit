@@ -13,7 +13,7 @@ Il risultato è costituito da una serie di report riguardanti la valutazione del
 
 - [Requisiti](#Requisiti)
 - [Set-up Plugin in Jenkins](#set-up-plugin-in-jenkins)
-- [Manutenzione](#manutenzione)
+- [Guida all'uso](#Guida_all'uso)
 - [Licenza](#licenza)
 
 # Requisiti
@@ -66,6 +66,8 @@ In particoalre i file su cui bisogna agire sono:
       - resource.tf
       - provider.tf
   - hosts
+  - Static Security Assessment
+      - assessment_playbook.yml 
   - Microservice Files
       - Jenkinsfile
   - Jenkinsfile 
@@ -148,6 +150,41 @@ disk {
   size  =  "10240M"
 }
 ```
+### provder.tf
+E' utilizzato da Terraform per interfacciarsi con il provider di risorse:
+
+#### Endpoint del Server Proxmox
+```groovy
+pm_api_url = "https://{IP_PROXMOX}/api2/json"
+```
+_Esempio_
+```groovy
+pm_api_url = "https://10.224.16.41:8006/api2/json"
+```
+### host
+Costituisce l'inventario utilizzato da ansible, completare con Indirizzi IP delle macchine virtuali, precedentemente asseganti.  
+E' possibile avere più IP asseganti alle maccchine worker ma un solo IP master
+```groovy
+[KubWorker]
+{INSERIRE IP}
+
+[KubMaster]
+{INSERIRE IP}
+```
+_Esempio_
+```groovy
+[KubWorker]
+192.168.6.114
+
+[KubMaster]
+192.168.6.115
+```
+
+
+
+
+
+
 
 ### Link a documentazione esterna 
 
