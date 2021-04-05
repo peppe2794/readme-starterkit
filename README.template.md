@@ -268,22 +268,26 @@ sshCommand remote: kali, command: "chmod +x kali_zap.sh && ./kali_zap.sh http://
 ```
 ### Creare in Jenkins le seguenti credenziali, utilizzate dalla pipeline attraverso il binding dinamico:
 _Credenziali Proxmox_  
+```groovy
 usernamePassword(credentialsId: 'Proxmox', passwordVariable: 'PASSWORD', usernameVariable: 'USER')
-
+```
 _Credenziali delle macchine virtuali (dovranno coincidere con quelle inserite in resource.tf)_  
+```groovy
 usernamePassword(credentialsId: 'worker', passwordVariable: 'WORKER_PASS', usernameVariable: 'WORKER_USER')  
 usernamePassword(credentialsId: 'worker', passwordVariable: 'WORKER_SUDO_PASS', usernameVariable: '')  
 usernamePassword(credentialsId: 'master', passwordVariable: 'MASTER_PASS', usernameVariable: 'MASTER_USER')  
 usernamePassword(credentialsId: 'master', passwordVariable: 'MASTER_SUDO_PASS', usernameVariable: '')  
 string(credentialsId:'MASTER_IP', variable:'MASTER_IP')
-
+```
 _Credenziali macchina Kali-Linux_  
+```groovy
 usernamePassword(credentialsId: 'KALI_CREDENTIALS', passwordVariable: 'KALI_PASS', usernameVariable: 'KALI_USER')  
 string(credentialsId:'KALI_IP', variable:'KALI_IP')
-
+```
 _Credenziali GitHub_  
+```groovy
 usernamePassword(credentialsId: 'GIT', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
-
+```
 
 
 
