@@ -31,7 +31,7 @@ SecDevOps Flow Template è uno strumento capace di eseguire un flusso di continu
   2) Distro Kali-Linux
 
   3) Proxmox Server
-    - Template da clonare con Cloud-Init abilitato
+      - Template da clonare con Cloud-Init abilitato
   
   4) SonarQube Server
   
