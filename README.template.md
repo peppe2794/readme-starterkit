@@ -84,6 +84,7 @@ In particoalre i file su cui bisogna agire sono:
       - Jenkinsfile
   - Jenkinsfile 
   - version.txt
+  - Deploy, per caricare i manisfest di deployment
 
 ### Link a documentazione esterna 
 
