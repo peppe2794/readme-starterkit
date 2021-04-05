@@ -59,20 +59,6 @@ Per Integrare SonarQube vi è bisogno di inserire il Server authentication token
       - Server authentication token creando delle nuove credenziali di tipo 'SecretText'
 ![My image](https://i.ibb.co/tLFKL41/sonarqube-token.png)
 
-
-```groovy
- agent any
-  stages{
-    stage('Provisioning VM on Proxmox with Terraform'){
-      steps{
-        withCredentials([usernamePassword(credentialsId: 'Proxmox', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
-          sh label: '', script: 'cd Provisioning; terraform init '
-          sh label: '', script: 'cd Provisioning; export PM_USER=${USER}; export PM_PASS=${PASSWORD}; terraform apply  --auto-approve'
-        }
-      }
-    }
-```
-
 # Guida all'uso
 Per poter utilizzare il template, una volta effettuato il Fork, bisogna inserire i parametri necessari al completamento di esso.  
 In particoalre i file su cui bisogna agire sono:
@@ -85,6 +71,24 @@ In particoalre i file su cui bisogna agire sono:
   - Jenkinsfile 
   - version.txt
   - Deploy, per caricare i manisfest di deployment
+
+#### resource.tf
+E' utilizzato da Terraform per istanziare macchine virtuali in Proxmox, sulle quali verrà eseguito un cluster Kuberntes.  
+I parametri da fornire sono:
+
+```groovy
+variable "ip_list"{
+  type  =  list
+  default  =  ["{IP1}","{IP2}"]
+}
+```
+_Esempio_
+```groovy
+variable "ip_list"{
+  type  =  list
+  default  =  ["192.168.6.114","192.168.6.115"]
+}
+```
 
 ### Link a documentazione esterna 
 
