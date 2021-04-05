@@ -11,7 +11,7 @@ SecDevOps Flow Template è uno strumento capace di eseguire un flusso di continu
 # Indice
 
 - [Requisiti](#Requisiti)
-- [Come contribuire](#come-contribuire)
+- [Set-up Plugin in Jenkins](#Set-up Plugin in Jenkins)
 - [Manutenzione](#manutenzione)
 - [Licenza](#licenza)
 
@@ -36,7 +36,7 @@ SecDevOps Flow Template è uno strumento capace di eseguire un flusso di continu
   4) SonarQube Server
   
   
-## Come installare
+## Set-up Plugin in Jenkins
 
 ```js
 console.log("Questo è un esempio di blocco di codice")
