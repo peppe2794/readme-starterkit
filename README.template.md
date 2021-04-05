@@ -162,8 +162,9 @@ _Esempio_
 pm_api_url = "https://10.224.16.41:8006/api2/json"
 ```
 ### host
-Costituisce l'inventario utilizzato da ansible, completare con Indirizzi IP delle macchine virtuali, precedentemente asseganti.  
-E' possibile avere più IP asseganti alle maccchine worker ma un solo IP master
+Costituisce l'inventario utilizzato da ansible.  
+#### Completare con Indirizzi IP delle macchine virtuali, precedentemente asseganti.  
+#### E' possibile avere più IP asseganti alle maccchine worker ma un solo IP master
 ```groovy
 [KubWorker]
 {INSERIRE IP}
@@ -178,6 +179,36 @@ _Esempio_
 
 [KubMaster]
 192.168.6.115
+```
+### assessment_playbook.yml
+Ansible playbook utilizzato per eseguire l'assessment dell'ambiante istanziato e configurato
+
+#### INserire le policy di Chef-InSpec e OSCAP che si voglio eseguire, è possibile utilizzarne più di una duplicando i comandi del file.
+```yml
+  - name: Execute static assessment
+    command: "{{item}}"
+    with_items:
+      - inspec exec {INSERIRE CHEF INSPEC PROFILE} --reporter html:/tmp/inspec_report.html --chef-license=accept
+  
+  - name: Transfer scap datastream
+    copy: src={INSERIRE PATH POLICY OSCAP} dest=/tmp/oscap_policy.xml mode=0777
+ 
+  - name: Execute static assessment
+    command: oscap xccdf eval --profile {INSERIRE PROFILO DELLA POLICY SCELTA} --report /tmp/scap_report.html /tmp/scap_policy.xml
+    
+```
+_Esempio_
+```yml
+  - name: Execute static assessment
+    command: "{{item}}"
+    with_items:
+      - inspec exec https://github.com/dev-sec/linux-baseline --reporter html:/tmp/inspec_report.html --chef-license=accept
+  
+  - name: Transfer scap datastream
+    copy: src=/home/giuseppe/Downloads/scap-security-guide-0.1.53/ssg-ubuntu1804-ds-1.2.xml dest=/tmp/scap_policy.xml mode=0777
+ 
+  - name: Execute static assessment
+    command: oscap xccdf eval --profile anssi_np_nt28_minimal --report /tmp/scap_report.html /tmp/scap_policy.xml
 ```
 
 
