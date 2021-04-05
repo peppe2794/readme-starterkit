@@ -1,9 +1,8 @@
 SecDevOps Flow Template
 =========================
 
-Sottotitolo / Slogan / Descrizione breve
+SecDevOps Flow Template è uno strumento capace di eseguire un flusso di continuous integration/continuous deployment integrando attività di sicurezza
 
-*Read this in other languages: [English](README.EN.md).*
 
 ## Immagini e GIF
 
