@@ -2,6 +2,7 @@ SecDevOps Flow Template
 =======================
 
 SecDevOps Flow Template è uno strumento capace di eseguire un flusso di continuous integration/continuous deployment integrando attività di sicurezza. L’intervento degli sviluppatori consisterà nel fornire quelle che sono le caratteristiche proprie dell’applicazione sviluppata ed un limitato set-up dei tool utilizzati, senza dover per ogni nuovo progetto implementare la logica necessaria a seguire la metodologia proposta.
+Il risultato è costituito da una serie di report riguardanti la valutazione dell'ambiente configurato, l'attivià testing dinamico eseguita e la qualità del codice prodotto. Tali report sono messi a disposizione in formato html, grazie ad essi è possibile realizzzare una valutazione complessiva sullo stato dello sviluppo prima di rilasciare l'applicazione in ambiente operativo.
 
 
 # Fasi e Strumenti
@@ -63,7 +64,14 @@ Per Integrare SonarQube vi è bisogno di inserire il Server authentication token
 console.log("Questo è un esempio di blocco di codice")
 ```
 
-## Documentazione
+# Guida all'uso
+Per poter utilizzare il template, una volta effettuato il Fork di esso, bisogna inserire i parametri necessari al completamento di esso.
+In particoalre i file su cui bisogna agire sono:
+  - Provisioning
+      - resource.tf
+      - provider.tf
+  - hosts
+  - 
 ### Link a documentazione esterna 
 
 # Come contribuire
