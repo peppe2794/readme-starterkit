@@ -60,8 +60,10 @@ Per Integrare SonarQube vi è bisogno di inserire il Server authentication token
 ![My image](https://i.ibb.co/tLFKL41/sonarqube-token.png)
 
 
-```js
-console.log("Questo è un esempio di blocco di codice")
+```javascript
+if (isAwesome){
+  return true
+}
 ```
 
 # Guida all'uso
