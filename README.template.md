@@ -17,16 +17,16 @@ SecDevOps Flow Template è uno strumento capace di eseguire un flusso di continu
 
 # Requisiti
   1) Jenkins Server, con i seguenti plugin e tool installati:
-    - Ansible Plugin
-    - Docker Pipeline
-    - GitHub
-    - Kubernetes Continuous Deploy
-    - SonarQube Scanner for Jenkins
-    - SSH Pipeline Steps
-    - Teraform Plugin
-    - Docker
-    - Ansible
-    - Chef-InSpec
+      - Ansible Plugin
+      - Docker Pipeline
+      - GitHub
+      - Kubernetes Continuous Deploy
+      - SonarQube Scanner for Jenkins
+      - SSH Pipeline Steps
+      - Teraform Plugin
+      - Docker
+      - Ansible
+      - Chef-InSpec
    
   2) Distro Kali-Linux
 
