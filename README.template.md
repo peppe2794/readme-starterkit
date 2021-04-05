@@ -116,13 +116,13 @@ variable "credentials_cipassword"{
 ```
 #### Numero di macchine virtuali da istanziare e il nome che si vuole scegliere per esse
 ```groovy
-  count  =  {VM_COUNT}
-  name   =  "{VM_NAME}${count.index}"
+count  =  {VM_COUNT}
+name   =  "{VM_NAME}${count.index}"
 ```
 _Esempio_
 ```groovy
-  count  =  2 
-  name  =  "kub${count.index}"
+count  =  2 
+name  =  "kub${count.index}"
 ```
 #### Template da clonare precedentemente creato in Proxmox
 ```groovy
@@ -183,7 +183,7 @@ _Esempio_
 ### assessment_playbook.yml
 Ansible playbook utilizzato per eseguire l'assessment dell'ambiante istanziato e configurato
 
-#### INserire le policy di Chef-InSpec e OSCAP che si voglio eseguire, è possibile utilizzarne più di una duplicando i comandi del file.
+#### Inserire le policy di Chef-InSpec e OSCAP che si voglio eseguire, è possibile utilizzarne più di una duplicando i comandi del file.
 ```yml
   - name: Execute static assessment
     command: "{{item}}"
@@ -195,7 +195,6 @@ Ansible playbook utilizzato per eseguire l'assessment dell'ambiante istanziato e
  
   - name: Execute static assessment
     command: oscap xccdf eval --profile {INSERIRE PROFILO DELLA POLICY SCELTA} --report /tmp/scap_report.html /tmp/scap_policy.xml
-    
 ```
 _Esempio_
 ```yml
@@ -210,6 +209,36 @@ _Esempio_
   - name: Execute static assessment
     command: oscap xccdf eval --profile anssi_np_nt28_minimal --report /tmp/scap_report.html /tmp/scap_policy.xml
 ```
+
+### Microservice Files/Jenkinsfile
+Jenkinsfile utilizzabile per creare le pipeline in Jenkins relative ai singoli componenti che costituiscono l'applicazione
+
+#### Inserire il registry docker utilizzato per pubblicare le immagini
+#### N.B. La variabile JON_NAME è già presente in Jenkins, rappresenta il nome che si sceglie per la pipeline
+```groovy
+registry = "${INSERIRE RESGISTRY DOCKER-HUB}/${JOB_NAME}"
+```
+_Esempio_
+```groovy
+registry = "peppe2794/${JOB_NAME}"
+```
+#### Inserire il profilo che si vuole utilizzar per eseguire l'assessment per componenti, nel caso se ne vogliano utiilizzare diversi aggiungere un'altra riga con un diverso nome del report
+```groovy
+sh 'inspec exec ${HERE} -t docker://${IMAGE} --reporter html:/Results/inspec_report.html --chef-license=accept || true'
+```
+_Esempio_
+```groovy
+sh 'inspec exec https://github.com/dev-sec/linux-baseline -t docker://${IMAGE} --reporter html:Results/Linux_Baseline_report.html --chef-license=accept || true'
+```
+#### Inserire il nome che si sceglierà per la pipeline in Jenkins relativa all'intera applicazione. Questa sezione è utilizzata per consentire il passaggio di parametri tra le pipeline del singolo microservizio e quella completa. Il parametro name dovrà essere diverso per ogni componente sviluppato e dovrà essere lo stesso che verrà specificato nella sezionedi relativa alla pipeline completa.
+```groovy
+build job: '${INSERIRE_NOME_PIPELINE_APPLICAZIONE}', parameters: [string (value: "$registry"+":"+"$DOCKER_TAG", description: 'Parametro', name: '$IMAGE')]
+```
+_Esempio_
+```groovy
+build job: 'SecDevOpsFlowTemplate_WordpressExample', parameters: [string (value: "$registry"+:"+"$DOCKER_TAG", description: 'Parametro', name: 'WP')]
+```
+
 
 
 
