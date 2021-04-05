@@ -60,10 +60,17 @@ Per Integrare SonarQube vi è bisogno di inserire il Server authentication token
 ![My image](https://i.ibb.co/tLFKL41/sonarqube-token.png)
 
 
-```javascript
-if (isAwesome){
-  return true
-}
+```groovy
+ agent any
+  stages{
+    stage('Provisioning VM on Proxmox with Terraform'){
+      steps{
+        withCredentials([usernamePassword(credentialsId: 'Proxmox', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
+          sh label: '', script: 'cd Provisioning; terraform init '
+          sh label: '', script: 'cd Provisioning; export PM_USER=${USER}; export PM_PASS=${PASSWORD}; terraform apply  --auto-approve'
+        }
+      }
+    }
 ```
 
 # Guida all'uso
